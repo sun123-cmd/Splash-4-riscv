@@ -1,3 +1,43 @@
+# RISC-V Cross Compilation Support
+
+This branch supports cross-compiling Splash-4 benchmarks for the RISC-V architecture, suitable for use in gem5 and other RISC-V simulators.
+
+## Dependencies
+
+```bash
+sudo apt update
+sudo apt install gcc-riscv64-linux-gnu g++-riscv64-linux-gnu m4
+```
+
+## One-Click Batch Compilation
+
+In the root directory, run:
+
+```bash
+./compile_riscv.sh
+```
+
+This script will automatically build all Splash-4 programs as statically linked RISC-V executables.
+
+## Manual Compilation (Single Program)
+
+To build a single program (e.g., radix):
+
+```bash
+cd Splash-4/Splash-4/radix
+make clean && make all
+file RADIX
+# Should show: ELF 64-bit LSB executable, UCB RISC-V, statically linked
+```
+
+## Notes
+
+- All executables are RISC-V 64-bit and statically linked, so no dynamic libraries are required in the target system.
+- All Makefiles are adapted to use the riscv64-linux-gnu-gcc toolchain.
+- The libtiff dependency for volrend-no_print_lock is also cross-compiled for RISC-V.
+
+---
+
 Splash-4 Benchmark Suite
 ========================
 
