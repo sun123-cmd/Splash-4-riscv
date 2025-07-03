@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
   MAIN_INITENV(,80000000);
 
   N = 1<<M;
-  rootN = 1<<(M/2);
+  rootN = 1L << (M/2);
   rowsperproc = rootN/P;
   if (rowsperproc == 0) {
     printerr("Matrix not large enough. 2**(M/2) must be >= P\n");

@@ -17,8 +17,7 @@ check_riscv:
 	@echo "✓ RISC-V 工具链检查通过"
 
 # 默认目标：先检查工具链，再编译
-all: check_riscv
-	$(MAKE) $(TARGET)
+all: check_riscv $(TARGET)
 
 # 清理目标
 clean:
@@ -31,16 +30,8 @@ info:
 	@echo "链接选项: $(LDFLAGS)"
 	@echo "目标文件: $(TARGET)"
 
-TARGET = OCEAN-NOCONT
-OBJS = jacobcalc.o laplacalc.o main.o multi.o slave1.o slave2.o
-
-decs.h: decs.h.in
-jacobcalc.c: decs.h
-main.c: decs.h
-slave1.c: decs.h
-laplacalc.c: decs.h
-multi.c : decs.h
-slave2.c: decs.h
+TARGET = LU-NOCONT
+OBJS = lu.o
 
 include ../../Makefile.config
 

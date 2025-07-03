@@ -26,7 +26,10 @@
 #
 DESTDIR=/usr/local
 #
-AR=	/usr/bin/ar
+# RISC-V 交叉编译配置
+RISCV_PREFIX ?= riscv64-linux-gnu-
+CC := $(RISCV_PREFIX)gcc
+AR := $(RISCV_PREFIX)ar
 NULL=
 
 IPATH=	-I.
@@ -145,7 +148,7 @@ tif_compress.o: tif_compress.c Makefile
 tif_fax3.o: tif_fax3.c g3states.h t4.h tif_fax3.h
 
 g3states.h: mkg3states.c t4.h
-	${CC} -o mkg3states ${CFLAGS} mkg3states.c
+	${CC} -o mkg3states ${CFLAGS} -static mkg3states.c
 	./mkg3states -c > g3states.h
 
 install: all installh

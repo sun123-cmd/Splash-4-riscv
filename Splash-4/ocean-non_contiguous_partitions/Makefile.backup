@@ -17,8 +17,7 @@ check_riscv:
 	@echo "✓ RISC-V 工具链检查通过"
 
 # 默认目标：先检查工具链，再编译
-all: check_riscv
-	$(MAKE) $(TARGET)
+all: check_riscv $(TARGET)
 
 # 清理目标
 clean:
